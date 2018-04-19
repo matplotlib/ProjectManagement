@@ -4,7 +4,7 @@ Meeting notes and other management documentation for Matplotlib
 **Call co-ordinates:  15:00 Eastern US time (UTC -04:00)**
 [Google Hangouts](https://hangouts.google.com/hangouts/_/calendar/NzloazhqaHZsa3M4am44ZHM0cmkxZTZxNGdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ.bb6q6do0fci19u582r7mjv6o2o?authuser=0) (link)
 
-*** Paper Agenda:  https://paper.dropbox.com/doc/Matplotlib-meeting-agenda-aAmENlkgepgsMeDZtlsYu
+**Paper Agenda:**  https://paper.dropbox.com/doc/Matplotlib-meeting-agenda-aAmENlkgepgsMeDZtlsYu
 
 
 Date              | Notes          |
