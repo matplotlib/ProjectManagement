@@ -14,6 +14,7 @@ Meeting notes and other management documentation for Matplotlib
 
 Date              | Notes          |
 ----------------- | -------------- |
+14 May, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_05_14.md) |             
 7 May, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_05_07.md) |             
 30 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_30.md) |             
 23 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_23.md) |             
