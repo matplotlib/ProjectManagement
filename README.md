@@ -1,22 +1,11 @@
-# ProjectManagement
-Meeting notes and other management documentation for Matplotlib
+# Project Management
+Weekly dev call meeting notes archive
 
 ## Weekly call agenda and notes
+* [hack md running notes](https://hackmd.io/@matplotlib/ryttwKflI/edit)
 
-### Call co-ordinates:  15:00 Eastern US time (UTC -04:00)
-
-  - [Google Hangouts](https://hangouts.google.com/hangouts/_/calendar/NzloazhqaHZsa3M4am44ZHM0cmkxZTZxNGdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ.bb6q6do0fci19u582r7mjv6o2o?authuser=0) (link)
-
-### Dropbox Paper Agenda:
-
-  - https://paper.dropbox.com/doc/Matplotlib-meeting-agenda-aAmENlkgepgsMeDZtlsYu
+## Call co-ordinates:  Monday 3:00-4:00PM (15:00) Eastern US time (UTC -04:00)
+* [Zoom](https://zoom.us/j/384435716)
+  
 
 
-Date              | Notes          |
------------------ | -------------- |
-14 May, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_05_14.md) |             
-7 May, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_05_07.md) |             
-30 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_30.md) |             
-23 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_23.md) |             
-16 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_16.md) |             
-09 April, 2018    |  [Notes](https://github.com/matplotlib/ProjectManagement/blob/master/meeting_notes/2018_04_09.md) |             
