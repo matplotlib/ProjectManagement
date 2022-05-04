@@ -28,7 +28,7 @@ We want to take a moment to remind you that this meeting, like all project space
 	* Newcomer: why are we interested to start working with the project
 	* Maintainer/contributor: how long have we worked with the project and what do we primarily do
 * [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
-	* I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues at the moment (for example organizing this meeting).
+	* I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
 * [name=Greg Lucas] Matplotlib Maintainer
 	* I joined Matplotlib about a year ago, but have been using it for quite some time now. I come from an Earth modeling and satellite data analysis background. In that regard, I am also a maintainer of another Python package, Cartopy, for plotting the data I work with on maps within Matplotlib.
 > Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
