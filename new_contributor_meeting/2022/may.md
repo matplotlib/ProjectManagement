@@ -16,7 +16,7 @@ We want to take a moment to remind you that this meeting, like all project space
 
 ## Agenda
 
-**Present:** Noa Tamir (@noatamir), Greg Lucas (@greglucas)
+**Present:** Noa Tamir (@noatamir), Greg Lucas (@greglucas), Andrew Fennell (@andrew-fennell), Oscar Gustafsson (@oscargus), Melissa Mendonça (@melissawm), Johnny Gill
 > please add your names (and github handle in brackets). This will makes it easier to stay in touch later in Gitter and on issues and pull requests (PRs) 😉
 > This is optional since these notes will be recorded in our Github repository. If you'd like you can also paste your answer in the zoom chat 😉
 
@@ -29,8 +29,31 @@ We want to take a moment to remind you that this meeting, like all project space
 	* Maintainer/contributor: how long have we worked with the project and what do we primarily do
 * [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
 	* I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
-* [name=Greg Lucas] Matplotlib Maintainer
+* [name=Greg Lucas] Matplotlib Maintainer, he/him
 	* I joined Matplotlib about a year ago, but have been using it for quite some time now. I come from an Earth modeling and satellite data analysis background. In that regard, I am also a maintainer of another Python package, Cartopy, for plotting the data I work with on maps within Matplotlib.
+* [name=Oscar Gustafsson] Matplotlib Maintainer
+   * Been part of the group of people with push access for a few months. Currently starting up an extension, mplsignal, for plotting signal processing related stuff.
+* [name=Melissa Mendonça] Contributor Experience Lead, she/her
+    * I am a software engineer working with different open source projects on community building, technical and documentation contributions. I am a new contributor to matplotlib :)
+* [name=Johnny Gill] Old contributor
+    * I contributed some code to draw tables, around 2003? I created a new project, blume, as a place to explore ideas around tables in matplotlib. It is turning into a toolkit to help me explore cosmological data with my other personal project gotu, which uses blume and matplotlib to explore the universe.
+* [name=Andrew Fennell] New contributor
+    * I have been contributing to matplotlib for a little over a month. I am working on a variety of issues in an attempt to familiarize myself with the project.
+
+* Emerging Theme: Open Source Ettiqutte 
+	* [name=Andrew] Who can participate where and when actually? are there some unwritten rules here? 
+	    * [name=Greg] Everyone! If you have seen an issue/PR and have something you want to contribute or comment on that issue/PR please do. The only real rule is to be courteous.
+		* [name=Oscar] Maybe be a bit mindful when pinging someone. There's no rule, but patience is a virtue.
+
+	* [name=Noa] What helps with overcoming "not knowing how to communicate" in the begining?
+		* [name=Andrew] Joining a meeting to meet the person behind the github handle like we did today
+		* [name=Andrew] Joining Gitter for ongoing communication that's more relaxed
+
+### Action Items
+- [ ] [name=Noa] Add a link to this meeting in the welcome message
+- [ ] [name=Noa] Create a more encouraging post 1st PR message with a link to this meeting, and the community meeting?
+    - [name=Melissa] Here's the one we use for NumPy https://github.com/numpy/numpy/pull/21436#issuecomment-1120342615
+
 > Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
 
 ## Useful Resources
