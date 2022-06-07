@@ -3,11 +3,11 @@
 
 Welcome to the monthly call for new contributors to the Matplotlib project 🎉
 
-* Next meeting: June 7th, 2022 (Tuesday) @ 6PM UTC
+* Next meeting: June 7th, 2022 (Tuesday) @ 5PM UTC
 * Join via [Zoom](https://us06web.zoom.us/j/81285851006?pwd=Tks2QjRkNWh5NGw0TmU1RUwwOVluZz09)
 	* if you need a passcode for zoom MPL should work
 * Our next meeting will be on:
-	* July 5th, 2022 (Tuesday) @ 6PM UTC
+	* July 5th, 2022 (Tuesday) @ 5PM UTC
 
 ### Code of Conduct
 
@@ -22,15 +22,20 @@ We want to take a moment to remind you that this meeting, like all project space
 *Feel free to add items for discussion to this agenda!*
 
 * Introductions: 
-	* Name 
-	* A bit about our experience with matplotlib/python as users
-	* Newcomer: why are we interested to start working with the project
-	* Maintainer/contributor: how long have we worked with the project and what do we primarily do
-* [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
-	* I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
-* [name=Greg Lucas] Matplotlib Maintainer
-	* I joined Matplotlib about a year ago, but have been using it for quite some time now. I come from an Earth modeling and satellite data analysis background. In that regard, I am also a maintainer of another Python package, Cartopy, for plotting the data I work with on maps within Matplotlib.
-> Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
+    * [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
+        * I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
+    * [name=Greg Lucas] Matplotlib Maintainer, he/him
+        * I joined Matplotlib about a year ago, but have been using it for quite some time now. I come from an Earth modeling and satellite data analysis background. In that regard, I am also a maintainer of another Python package, Cartopy, for plotting the data I work with on maps within Matplotlib.
+    * [name=Johnny Gill] Old contributor
+        * I contributed some code to draw tables, around 2003? I created a new project, blume, as a place to explore ideas around tables in matplotlib. It is turning into a toolkit to help me explore cosmological data with my other personal project gotu, which uses blume and matplotlib to explore the universe.
+    * [name=Your Name] your experience with matplotlib/python in short, pronouns
+	    * Newcomer: why are we interested to start working with the project
+	    * Maintainer/contributor: how long have we worked with the project and what do we primarily do
+* [name=Johnny Gill] 20 min Talk: The history of matplotlib and how I use it to explore the universe with [blume](https://github.com/swfiua/blume) and [gotu](https://github.com/swfiua/gotu) 
+* <add items here...>
+*
+
+   > Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
 
 ## Useful Resources
 
