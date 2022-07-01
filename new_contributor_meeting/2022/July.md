@@ -3,11 +3,11 @@
 
 Welcome to the monthly call for new contributors to the Matplotlib project 🎉
 
-* Next meeting: July 5th, 2022 (Tuesday) @ 6PM UTC
+* Next meeting: July 5th, 2022 (Tuesday) @ 5PM UTC
 * Join via [Zoom](https://us06web.zoom.us/j/81285851006?pwd=Tks2QjRkNWh5NGw0TmU1RUwwOVluZz09)
 	* if you need a passcode for zoom MPL should work
 * Our next meeting will be on:
-	* August 2nd, 2022 (Tuesday) @ 6PM UTC
+	* August 2nd, 2022 (Tuesday) @ 5PM UTC
 
 ### Code of Conduct
 
