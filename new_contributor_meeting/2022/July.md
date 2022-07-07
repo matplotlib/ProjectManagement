@@ -15,26 +15,37 @@ We want to take a moment to remind you that this meeting, like all project space
 
 ## Agenda
 
-**Present:** Noa Tamir (@noatamir)
-> please add your names (and github handle in brackets). This will makes it easier to stay in touch later in Gitter and on issues and pull requests (PRs) 😉
-> This is optional since these notes will be recorded in our Github repository. If you'd like you can also paste your answer in the zoom chat 😉
+**Present:** Noa Tamir (@noatamir), Melissa (@melissawm), Johnny Gill (@swfiua), Andrew Fennell (@andrew-fennell), +2
 
 *Feel free to add items for discussion to this agenda!*
 
 * Introductions: 
-	* Name 
-	* A bit about our experience with matplotlib/python as users
-	* Newcomer: why are we interested to start working with the project
-	* Maintainer/contributor: how long have we worked with the project and what do we primarily do
-* [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
-	* I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
-
-> Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
+    * [name=Noa Tamir] Contributor Experience Lead, she/היא/sie
+        * I joined Matplotlib in March so I'm relatively new as well. At the moment I am mostly working on documenation, and contributor exprience related issues (for example organizing this meeting).
+    * [name=Andrew Fennell] New Contributor
+        * I have been contributing for a few months on various issues.
+    * [name=John Gill]  old contributer, working on personal projects using matplotlib interactively. Github id: swfiua
+    * [name=Melissa] Contributor Experience Lead (multiple projects), she/her
+        * Newish to matplotlib
+* How do you pick a first issue?
+    * We reviewed the [Good first issue](https://github.com/matplotlib/matplotlib/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+first+issue%22) label and how one can combine it with [the difficulty labels](https://github.com/matplotlib/matplotlib/labels?q=difficulty%3A)
+        * Difficulty: Easy is suited for people with little Python experience. It could anything from fixing a typo in the docs, to adding a test, or modifying something simple in the codebase with clear instructions.
+        * Difficulty: Medium and Difficulty: Hard are not trivial to solve and require more thought and programming experience. What's appropriate to whom is an entirely personal decision and would likely change overtime as your experience and familiarity with the project develops.
+* How do you take an issue?
+    * In general, the Matplotlib project does not assign issues. Issues are "assigned" or "claimed" by opening a PR. 
+    * If there is an existing PR for an issue but it is very old and not yet completed, you can comment and ask the author if they would be happy to have you collaborate or start a new PR refrencing theirs (you can cherry pick commits which you find useful if you don't need everything). If they still intend to return to it but were just stalled,  because hey, we're mostly volunteers here, then look for another issue.
+    * More information about [issues for new contributors](https://matplotlib.org/devdocs/devel/contributing.html#issues-for-new-contributors) is in our contributor guide.
+* Who merges the PRs?
+    * The maintainers do =)
+    * Documentation improvements get merged by 1 reviewer
+    * Code changes and significant changes to documentation, like new tutorials, will be reviewed by 2 reviewers
+    * No self-merges unless it is a small patch to unbreak the CI, or it was explicitly allowed by another reviewer
+    * You can read about merging policy in detail in the [Merging section](https://matplotlib.org/devdocs/devel/coding_guide.html#merging) of our contributing Guide
 
 ## Useful Resources
 
 * [Our contributor Guide](https://matplotlib.org/devdocs/devel/contributing.html)
-* This is where we keep past meeting notes from the new contributors meeting [insert github link]
+* This is where we keep past meeting notes from the new contributors meeting [on github](https://github.com/matplotlib/ProjectManagement)
 	* You will soon find today's meeting notes there
 	* You can also have a look at topics and links that were shared before 🧐
 * If you are curious, here's an article about [the architecture of Matplotlib](http://www.aosabook.org/en/matplotlib.html)
