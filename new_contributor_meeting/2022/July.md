@@ -1,5 +1,5 @@
 ###### tags: `new contributors meetings`
-# Matplotlib New Contributors Meeting
+# Matplotlib New Contributors Meeting July 2022
 
 Welcome to the monthly call for new contributors to the Matplotlib project 🎉
 
