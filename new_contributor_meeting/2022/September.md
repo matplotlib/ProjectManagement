@@ -15,7 +15,7 @@ We want to take a moment to remind you that this meeting, like all project space
 
 ## Agenda
 
-**Present:** Noa Tamir (@noatamir), Greg Lucas (@greglucas)
+**Present:** Noa Tamir (@noatamir), Greg Lucas (@greglucas), Melissa Mendonça (@melissawm), Stefanie Molin (@stefmolin)
 > please add your names (and github handle in brackets). This will makes it easier to stay in touch later in Gitter and on issues and pull requests (PRs) 😉
 > This is optional since these notes will be recorded in our Github repository. If you'd like you can also paste your answer in the zoom chat 😉
 
@@ -31,6 +31,28 @@ We want to take a moment to remind you that this meeting, like all project space
 * [name=Greg Lucas] Matplotlib Maintainer he/him
 	* I joined Matplotlib about a year ago, but have been using it for quite some time now. I come from an Earth modeling and satellite data analysis background. In that regard, I am also a maintainer of another Python package, Cartopy, for plotting the data I work with on maps within Matplotlib.
 > Newcomers please add items to the agenda based on your interests! What would you like us to discuss? do you want to ask something? are you already working on a specific PR? you can add a link to it ✨ Would you like to get some guidance on how to navigate some of the code? OR learn how to add a test? We will do our best to answer or help you connect you with the right people ☺️
+* How do you pronounce CartoPy? Py like pie or like pea. 
+    * Anyway you like! but Greg uses Pie.
+* Discussion about GitPod and usefulness for getting contributors up and running more easily
+    * Working through Numpy's setup https://github.com/numpy/numpy/blob/main/.gitpod.yml and a quick demo from @noatamir 
+    * 50 hours free for individuals/month, then you can get a pro account if you're an open-source contributor
+* You can use https://github.com/matplotlib/mpl-docker
+* [Cakebrew for mac](https://www.cakebrew.com/)
+* https://github.com/matplotlib/matplotlib/pull/23698/files Why aren't the SVG tests running? Is the SVG test actually required? The PNG test is available. 
+    * Is SVG preferred because of text placement, or file size?
+    * Is [Inkscape](https://inkscape.org/) installed? 
+        * clarify this is required "for SVG comparison test"
+        * https://github.com/matplotlib/matplotlib/blob/1d5221b2c5fe989fa6e7eb680839a1586cfa4d1e/lib/matplotlib/testing/compare.py#L232
+        * https://github.com/matplotlib/matplotlib/blob/1d5221b2c5fe989fa6e7eb680839a1586cfa4d1e/lib/matplotlib/testing/compare.py#L139
+        * Let's add this here: https://matplotlib.org/devdocs/devel/testing.html#writing-an-image-comparison-test
+        * clarify both ghostscipt and inkscape requirements for image testing based on above links.
+        * cross reference with https://matplotlib.org/devdocs/devel/dependencies.html#development-dependencies
+    * @IGuKs80UTJCig4yt6Zos7w wonders why SVG would need an image comparison versus just the text output from the SVG file. (i.e. text diff vs image diff).
+    * Perhaps have a few SVG image rendered specific tests, but if someone adds a new SVG file can text-based comparison work on the platform without needing to install inkscape?
+    * Turn the "Dependencies for Matplotlib" into a table?
+        * Add the place where the dependency is needed (docs, tests, code, ...)
+        * Might be useful: https://sphinx-design.readthedocs.io/en/latest/
+        
 
 ## Useful Resources
 
