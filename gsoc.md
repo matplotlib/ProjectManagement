@@ -35,12 +35,12 @@ Google gives about a week or two to review applications & it's acceptable/common
 
 ### evaluations
 https://google.github.io/gsocguides/mentor/evaluations
-Google has two-three evaluation periods, the mentor **must** fill these out or the student will get dropped. One mentor per participant. 
+Google has two-three evaluation periods, the mentor **must** fill these out or the participant will get dropped. One mentor per participant. 
 - [ ] midterm
 - [ ] final
 
 
-### student blog posts
+### blog posts
 NumFocus also often wants the participants to submit periodic blog posts about their work. In the past, the recommendation has been roughly every two weeks, minimally:
 - [ ] introduce project + biography
 - [ ] midterm 
