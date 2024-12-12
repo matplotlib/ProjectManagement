@@ -1,6 +1,5 @@
 # Matplotlib Weekly Meeting 
 
-
 **A regular sync meeting for the project's maintainers, which is open to the community.** Everyone is welcome to attend and contribute to conversations.
 
 ## February 22 2024 - 
@@ -28,6 +27,1048 @@ America/New_York     2023-04-06 15:00:00-04:00
 America/Vancouver    2023-04-06 12:00:00-07:00
 US/Hawaii            2023-04-06 09:00:00-10:00
 ```
+# Dec 12
+_attending_: @story645, @greglucas, @ksunden 
+## Agenda
+### Old business
+- [] RSE updates
+### New business
+- [] 3.10
+- [] Symlinks in wheels
+
+# Dec 5 
+_attending_: @QuLogic, @ksunden, @story645, @NGWi
+
+## Agenda
+### Old business
+- [x] RSE updates
+
+### New business
+- [x] 3.10
+
+### Notes
+- [xkcd](https://github.com/matplotlib/matplotlib/issues/29233)
+    - probably just an error on local fonts
+- [transparent animation](https://github.com/matplotlib/matplotlib/pull/29024)
+ - Was reported as not a functioning fix in a comment on the PR 
+ - can't reproduce  
+
+# November 21
+_attending_: @tacaswell @efiring @ksunden @qulogic @story645 
+
+## Agenda
+### Old business
+- [ ] RSE updates
+
+### New business
+- [ ] 3.10
+
+
+## Notes
+### RSE updates
+ - Kyle
+     - 3.10 finalizing PRs had more back-and-forth than expected
+         - vert deprecation [#29155](https://github.com/matplotlib/matplotlib/pull/29155)
+             - switch deprecation to "pending"
+             - this will still fail pandas (because they have opted it to more warnings)
+             - we will PR to fix pandas
+         - converter relaxation [#29154](https://github.com/matplotlib/matplotlib/pull/29154)
+             - merged to main
+             - PR to 3.10.x pending
+ - Elliott
+     - gtk snapshot work, issues with fractional high-dpi
+     - CI audit: https://gist.github.com/QuLogic/1ef085d97e1f29d29045455411d686e9
+         - action: try dropping azure linux + macOS
+             - reduce power usage, reduce total build time
+     - discussion of flaky tests on windows
+         - mostly seems connected to subprocess
+- Tom
+    - some review, work on LLM rules
+
+
+### test determinism test 
+ - ghostscript does not promise determinism of output, so we can not test for it!
+ - consider removing test (or atleast ps part)
+- stalled PR from @oscargus to remove distillation may be related
+
+### LLM chat
+
+ - https://github.com/matplotlib/matplotlib/pull/28335
+
+# November 14
+_attending_: @tacaswell @greglucas  @ksunden @QWhXj01mSwmTjk5kN1H_qQ 
+
+## Agenda
+### Old business
+- [x] RSE updates
+
+### New business
+- [x] 3.10.0rc1 fallout?
+
+
+## Notes
+### RSE updates
+ - Kyle
+     - data prototype work
+         - thinking about collections
+     - incompatibility with tcl9, working on finishing PR
+ - Elliott
+     - finished wasm work
+         - PRs will run
+         - still evaluating canvas backend, maybe platfrom specifc dependencies for wasm builds
+     - gtk4 modernization
+         - direct buffer copy vs cairo
+     - finished rebuild of fedora
+         - 10 packages failed to rebuild, some already fixed by upstream (out of 150 odd)
+         - some were ignoring deprecations
+         - no seaborn-scale downstream broke
+         - builds: https://copr.fedorainfracloud.org/coprs/qulogic/matplotlib-310/packages/
+         - checks: https://copr.fedorainfracloud.org/coprs/qulogic/matplotlib-310.checker/packages/
+             - anything that fails in the first link, but _doesn't_ in the second is a new failure
+             - APLpy - actually failing in astropy; [fixed upstream](https://github.com/astropy/astropy/pull/17145)
+             - gdl - flaky test, not a real failure
+             - morphio - pybind11, not us; [fix available upstream](https://github.com/BlueBrain/MorphIO/pull/508)
+             - myst-nb - tests are [version-specific](https://github.com/executablebooks/MyST-NB/blob/master/pyproject.toml#L98-L99), but unlikely to be fully broken
+             - python-animatplot - [fixed upstream](https://github.com/boutproject/animatplot-ng/pull/25)
+             - python-fsleyes-widgets
+             - python-mplcairo - fixed in 0.6
+             - python-pandas - axis converter warning, and deprecation of `vert` argument to `boxplot`; @ksunden to investigate
+             - python-plotnine - deprecation warning caught by tests, but it's [fixed upstream](https://github.com/has2k1/plotnine/commit/6cc67c156cc3f9aa2d85f13aea06bc7abee7eaac#diff-11be2f3ae9ad00a253129ee11716189ca7175d027da3618274f690503a28d19aL786), not packaged yet
+ - Thomas
+     - behind the scenes NASA grant
+     - bit of review and discussion with Kyle
+
+### 3.10.0 final
+
+Target this Friday
+
+### Timers
+ - PR: https://github.com/matplotlib/matplotlib/pull/29062
+ - What do we want to do for accuracy of timers on CI systems?
+     - CI systems are troublesome with their timers. All tests pass locally.
+     - Keep the current PR as-is and target 3.11, nothing urgent for 3.10.
+     - Try to make longer tests with longer iterations to avoid issues with slow CI systems. (long running tests are currently ~25s)
+         - Make sure to change time based on local vs CI
+ - 
+
+
+# November 7
+_attending_: @tacaswell, @efiring, @ksunden, @story645, @QuLogic 
+## Agenda
+### Old business
+ - [x] RSE updates
+
+### New business
+ - [x] 3.10rc1 fallout?
+ - [ ] sprint report
+
+## Notes
+### RSE updates
+- Kyle
+    - rc 3.10 out (technically in October)
+    - trying to focus on data-prototype work
+- Tom
+    - grant work
+    - pydata NYC sprints
+    - bits of review/contributions
+- Elliott
+    - 3.10rc1 testing (fedora build to futher build down stream)
+    - Work on wasm build
+        - need to skip subprocess / thread tests
+        - they have a canvas backend that we might adopt
+        - how does this intersect with jupyterlite?
+            - we think they are using the canvas backend, need to talk to them
+        - need to look into how to get nightly wheels for pyodide available if we want to use jupyterlite for our docs
+        - we do have some cut-outs because we fully control our own server and can host what ever we need to
+        - might need to tune "how to clean old wheels" script (shared problem)
+
+
+### rc1 fallout
+- none yet!
+
+### sprint report
+
+- got a few first-time contributors through
+
+# October 31
+_attending_: @tacaswell, @QWhXj01mSwmTjk5kN1H_qQ, @QuLogic ,@ksunden, @story645 , @timhoffm 
+## Agenda
+### Old business
+ - [x] RSE updates
+ - [x] 3.10 status update
+### New business
+ - [x] NF CoC
+
+
+## Notes
+### CoC
+
+#### Conetxt 
+
+Email from NF
+
+> Dear Projects, 
+>
+>
+>
+>We are happy to announce that the NumFOCUS Board of Directors approved the new NumFOCUS Code of Conduct on Sept. 4, 2024. Before the Code of Conduct can be implemented, the NumFOCUS Code of Conduct Working Group must be established and receive training. We plan to complete this process by the end of January 2025.
+>
+>
+>
+>Current: NumFOCUS Sponsored and Affiliated projects can opt-in to use the new Code of Conduct. Starting Feb. 1, 2025, all new NumFOCUS projects will be asked to opt-out of using the NumFOCUS CoC. NumFOCUS events, including PyData, will continue under the NumFOCUS Code of Conduct in place.
+>
+>
+>
+>NumFOCUS Code of Conduct Working Group Election
+>
+>We are looking for individuals willing to serve in the Working Group that will be tasked with reviewing, investigating, responding to, and advising on potential conduct violations and advising a broad NumFOCUS ecosystem member on the NumFOCUS Code of Conduct. The term is one year. Please find more information, as well as the nomination form, in this blog post.
+>
+>
+>
+>Your Decision Process 
+>
+>For your project currently with NumFOCUS, the new CoC is opt-in. To support your project in making an informed decision, as well as help in the potential implementation, we are planning the following actions:
+>
+> 1. Jan. 2025: Walk-through video + email + meetings for the Projects and PyData chapters
+> 2. Feb. 2025: Current Projects’ decisions to opt-in are captured via a Typeform submission
+> 3. Mar. 2025: Meeting with Project adopters to provide materials:
+>    - Welcome pack:
+>       - pre-drafted text that you can put on your website / GitHub README file
+>       - a link to our CoC information, which will include the reporting button
+infographic of the reporting procedures
+>     - Education:
+>        - online materials covering CoC-related best practice
+>
+>
+>Please let us know if you have any questions. Feel free to contact Kamila Stepniowska (Project DEI Lead) by email (kamila@numfocus.org) or via Slack.
+>
+>
+>
+>Thank you,
+>
+>Arliss
+
+NF CoC: https://numfocus.org/2025-code-of-conduct
+Our current CoC: https://matplotlib.org/stable/project/code_of_conduct.html
+
+Currently we use Contributor Covenent 2.0 verbatim, NF CoC is new text synthesised from a number of existing CoC including Contributor Covenent 1.4 
+
+Looks like we can not make a decision until Feb 25 and there will be more information / materials available to us in Jan 25
+
+#### Discussion 
+
+Consensus is we are still interested.
+
+### RSE updates
+ - Kyle
+     - work on 3.10
+     - rc1 TODAY
+ - Elliott
+    - sick this week
+    - got thourgh animation work
+        - all codecs could find work
+    - polar PR position in layouts
+    - starting to look at alt-text
+    - CI audit
+        - mostly done, still in progress sorting out where we skip which tests
+            - mostly GUI toolkits
+        - appveyor is the only one that runs with conda
+        - azure is a multidue of windows
+        - azure vs GHA have slightly different osx runners
+        - freethreading only on GHA
+- Tom
+    - 3.10 work
+    - grant prep work
+
+### 3.10
+- 3 PRs
+    - https://github.com/matplotlib/matplotlib/pull/28048
+        - merged, docs failures we think will work when meregd 
+    - 
+
+
+### sprint prep
+
+- https://github.com/matplotlib/matplotlib/issues/28920
+- target switch to `!` to supress broken links as a sprint activity (#28290)
+- @story645 will take a pass at turning this into a usable task-list for the sprint at pydata NYC next week
+  - will edit into original issue
+
+# October 24
+## Agenda
+
+### Old business
+- [x] RSE updates
+- [ ] 3.10 progress
+### New business
+
+- [x] ROSES 2024
+    - https://www.nasa.gov/news-release/nasa-funds-open-source-software-underpinning-scientific-innovation/ We were selected for a 5 year grant to support mpl + cartopy
+
+## notes
+
+### RSE updates
+- Tom
+    - behind the scenes paperwork for NASA grant
+    - some review
+- Kyle:
+    - macos input hook issues
+    - 3.10 work
+- Elliott
+    - 3.10 things
+    - finished polar work (needs to be commited and PRd)
+    - looking at transparent animation
+        - ham-fisted compositing to white not great (Caswell added that)
+        - adding cut-out for more formats that support it
+    - need website reviewed to turn of pluto
+        - Done!
+
+### 3.10
+
+
+# October 17
+_attending_:@efiring, @ksunden, @QuLogic,
+
+
+## agenda
+### old business
+- [ ] RSE
+
+## Notes
+
+### 3.10
+
+- MacOS CI problem solved, but needs a backport.
+- Color pipeline: needs another rebase (Kyle).
+- Nothing else is blocking; a few more might get in.
+- goal: branch tomorrow or Monday
+- merge reference cycle fix? https://github.com/matplotlib/matplotlib/pull/28861
+
+### 3.9.3
+- worth doing
+- some backports
+- https://github.com/matplotlib/matplotlib/pull/28981
+
+
+# October 10
+
+_attending_:@efiring, @ksunden, @QuLogic, @greglucas, @tacaswell, @story645 
+
+## agenda
+### old business
+- [ ] RSE
+- [ ] [name=hannah][NumFocus CoC](https://numfocus.org/2025-code-of-conduct)
+
+
+## Notes
+
+### COC
+- NF has released text, discuss in 3 weeks
+
+### 3.10
+- 3D PR is almost done
+- push hatch/edge color API cleanup to 3.11
+- go ahead with colorizer PR
+- ttconv pr
+    - https://github.com/matplotlib/matplotlib/pull/20866
+    - https://github.com/matplotlib/matplotlib/pull/28784 for example of type42
+- long discussion of thread/freethreading
+
+### RSE update
+- Elliott:
+    - progress on website redirects
+        - now have proper 301 redirects instead of symlinks
+        - https://github.com/matplotlib/matplotlib.org/pull/41
+        - running on https://pluto.matplotlib.org
+    - yesterday looked like we were getting hammered by AI bot
+        - turned on cloudflare cdn for discourse
+        - followed guide on how to do this, but report issues
+    - enable bot-protection on CF, this broke inventory downloading for inter-sphinx, turned off
+
+# October 3
+_attending_: @ksunden, @QuLogic, @efiring
+
+Informal meeting with some discussion of PRs for 3.10.
+
+3-D rotation PR: needs a decision, or delay to 3.11.
+
+3.8 deprecation removals
+
+https://github.com/matplotlib/matplotlib/pull/28658: Tim?
+
+# September 26th
+_attending_: @ksunden, @QuLogic, @efiring, @story645, @timhoffm 
+
+## Agenda
+### old buisness
+- [ ] RSE
+
+### new business
+- [x] [name=hannah] hacktoberfest?
+
+## Notes
+
+### hacktoberfest 
+- Evaluation is neutral; hard to evaluate long-term value.  There is some willingness, but no enthusiasm.
+    - we're too under-resourced at the moment 
+- take out topic
+- they can request a `hacktoberfest-accepeted` tag
+
+### [removal of `cbook.Stack`](https://github.com/matplotlib/matplotlib/pull/28874)
+- this was deprecated in 3.8, and the linked PR removes it for 3.10
+- however, there exists a usage of it in the type stubs for `lib/matplotlib/backend_tools.pyi:ToolViewsPositions` (but is not otherwise documented)
+- for now, we will fix mypy by keeping the private `cbook._Stack` in the type stubs
+- can open a followup issue or PR to deprecate the `ToolViewsPositions` internals if wanted
+
+### [fixed aspect overwrites explicitly set data limits](https://github.com/matplotlib/matplotlib/pull/28683)
+- accept the pr
+
+### [fontproperities init](https://github.com/matplotlib/matplotlib/pull/28843)
+- distinguishing if string is family or pattern
+- alternative proposal/concern is that someone may have passed in a pattern as a family kwarg arg - undocumented but supported use case
+    - we can let that work for the time being and worry about it later 
+        - can't warn b/c of lack of distinction between names and patterns 
+            - we can check if a string is a pattern b.c we can run it through the machine
+            - can't determine if it's a family name
+    - we want to ask `not family` but we can't get the full set of families
+- merged
+- follow up: either leave it or figure out pattern|family or restrict names
+
+### 3.10 queue
+- colorizer
+- pybind11
+
+
+
+# September  19th
+
+
+## Agenda
+_attending_: @tacaswell, @ksunden, @QuLogic, @efiring, @story645 
+
+### old business
+- [x] RSE
+
+### new business
+- [ ] [name=@story645] github teams for non-code work:
+    -  survey: Jerome (@jeromefv-former GSOD) and Tammy (@tgmiller5)
+        -  survey repository (also backup old survey here)
+    -  social: Pawel (@pawjast) -> social media projects board
+- [ ] 3.10 status / burndown
+- [x] [name=greglucas] Potential funding through OpenTeams [REPOS project](https://www.openteams.com/introducing-repos-platform-for-sustainable-open-source-funding/)
+    - Propose bugs to squash or improvements to make and companies can pay developers to work on those specific items because it may be blocking them
+
+### issues and PRs
+
+## Notes
+### RSE updates
+ - Tom
+     - issue triage and review
+     - meeting with Kyle/Elliott
+ - Kyle
+     - issue / PR triage
+     - aiming for 3.10 rc next week
+     - implementing a setter for converters on `axis` objects for 3.10
+     - data prototype work
+ - Elliott
+     - triage work
+     - pybind11 and ft2font work
+     - close to PR to remove our numpy wrapper (and only use pybind11's)
+     - working on sizing polar plots correctly
+     
+### REPOS project
+
+- we propose specific projects with budgets
+- companies fund said projects
+- run through openteams
+- follow up again when Greg is on the call
+
+#### github teams/ recognition of non-code contributions
+- create a repo for the survey
+- add teams for survey and social media
+- Numpy web page "teams" example https://numpy.org/teams/ (generated from Github teams)
+
+# September 12th
+
+## Agenda
+
+_attending_ : @tacaswell @timhoffm @story645 @IGuKs80UTJCig4yt6Zos7w (greglucas) @ksunden @trygve @QWhXj01mSwmTjk5kN1H_qQ (efiring) @rcomer 
+
+### old business
+- [x] RSE
+- [x] [name=@story645]user survey - do we have an mpl google account for forms? 
+    - who should own it?
+    - [very rough draft of questions](https://hackmd.io/3xLJ88NhQrG_BOXrWKGp1Q#List-of-questions-and-available-responses)
+
+### New business
+- [x] [name=@greglucas] NumFOCUS Summit updates
+    - [ ] NetworkX requests
+        - Bezier path improvements and distance along curve
+        - Arrow to the edge of a marker (Greg: Is there a way to update this with the transform stack and `get_tightbbox()`? I'd be worried about interactively moving a marker and getting the arrow to follow)
+- [x] [name=@greglucas] Squash merging rather than asking new contributors to squash themselves
+- [x] pybind11 updates
+- [ ] mpl 3.10 updates
+    - https://hackmd.io/l9vkn_T4RSmk147H_ZPPBA?both#310
+    - PR for [grouped bar charts](https://github.com/matplotlib/matplotlib/pull/28560) [Tim] -> API feedback welcome
+- [ ] arrows are hard
+- [x] opt into NF CoC scheme 
+
+## Notes
+### NF summit
+ - news: Leah is stepping down
+ - discussions about
+     - web assembly
+     - SDG program
+         - NF "developer-in-residince" to spread across projects
+     - SPEC process
+     - updates for Python freethreading
+         - lots openMP thread
+     - https://github.com/numfocus/project-summit-2024-unconference/issues for more details
+ - CoC updates
+    - Opt-in for current projects
+    - Opt-out for new projects coming in
+    - NumFOCUS Code of Conduct Working Group (coming soon)
+    - Code of Conduct Event Response Teams (organizers create for a particular event)
+    - coming soon
+- cross-project development
+    - discussion with networkX
+    - revival of some old PRs from Bruno about Bezier curves
+    - enhancements around pointing arrows to edges of other paths
+    - (discussion of arrows and why they are)
+    
+### CoC opt-in
+
+- high level discussion sound good
+- early drafts had same pro/con as our current process
+- Caswell in in favor to get benifit of a bigger pool
+- wait for actual details before committing
+
+### RSE updates
+ - Kyle
+     - summit most of last week
+     - data prototype work on patches
+     - issue / PR review
+ - Elliott
+     - mostly pybind11 work
+     - rebased ttfconf PR that switches to using fonttools
+         - also fixes a bug we only just discovered with font subsetting
+ - Tom
+     - project management
+     - little bit of review
+
+### user survey 
+- please contact NF for getting access to a form
+- there exists a rough draft of questions
+    - justification of questions still in process
+- aiming for early to mid fall to be ready
+
+### squash merge
+- do we want to just squash-merge?
+- vote to (socially) prefer squash merge
+
+### pybind11
+- just needs review effort
+- still left after these:
+    - macosx (not c++ so leave)
+    - some internal stuff that is waiting on these PRs
+    
+### mpl 3.10
+
+- can we just cut from main now?
+  - colorbar stuff
+  - colorizer can be merged
+    - what is left on colorizer?
+        - currently doing last round of review
+        - @timhoffm hoffm should take another look
+        - consider if there is a better way to fix `isinstance`
+- have a proposal for group bar charts from @timhoffm 
+    - everything is marked as provisional [#28560](https://github.com/matplotlib/matplotlib/pull/28560)
+- @ksunden will be release manager, we need to update the goverance docs
+    - updated docs: https://github.com/matplotlib/governance/pull/41
+- pybind11 in for 3.10 (yes)
+- freethreading?
+    - qhull is probably ok
+    - contourpy claims in is safe
+    - kiwi is a question
+    - freetype in theoritically safe
+        - ft2font has no locks
+        - agg may lock the font cache
+    - plan
+        - build 313t wheels
+        - option 1: do not mark as safe
+            - document that we need users to test with the force free-thread env
+            - this may be closer to what CPython does
+        - option 2: mark as safe
+            - numpy has marked them selves safe
+            - using a freethreading build is opting into segfaults 
+        - fliping on/off in a mirco seems ok
+        - 
+
+# September 5th
+_attending_ : @efiring, @story645, @QuLogic 
+## Agenda
+
+### Old business
+- [ ] RSE
+
+
+## Notes
+### RSE
+- Kyle @ summit 
+- Elliot still needs SDG paperwork, has been working primarily on FT2Font work
+- Question about license in [font test](https://matplotlib.org/devdocs/project/license.html#fonts)
+    -no specific license file for Dejavu
+### pydata nyc
+- finish out tagging PRs bf sprints
+    - https://github.com/matplotlib/matplotlib/pulls?q=is%3Aopen+is%3Apr+label%3A%22Documentation%3A+tags%22
+
+
+
+# Aug 29th
+_attending_ : @greglucas, @efiring, @ksunden, @QuLogic, @story645, 
+
+## Agenda
+
+### Old business
+- [x] RSE
+- [x] GSOC
+    - [x] how to manage documentation of colorizer
+
+### New business
+- [x] link exceptions in docs
+- [x] [fig.annotate](https://github.com/matplotlib/matplotlib/pull/28753)
+
+## Notes
+### RSE
+ - Kyle
+    - some time on getting NF summit travel sorted
+    - wrapped up GSOC evalution
+    - working on data prototype `Patches`
+    - PR review
+- Tom
+    - Review
+    - fixing the docs on the colorizer PR
+- Elliott
+    - mostly ft2font, many test cases
+    - found a few bugs
+    - useful to validate the planned pybind11 work
+    - paper work for SDG, plan to start work next week
+
+
+### GSOC
+ - is over. final report: https://trygvrad.github.io/gsoc-2024-bivariate-colormaps-summary/
+ - some was merged, not everything we planned
+ - we drove a change-of-scope that changed goals
+ - potentially fix docs w/ a script (called from conf.py) that writes out the .rst from *_scalarmappable* and is then included in write place via .. include::
+
+### doc links:
+- have sphinx document private methods by default -> sphinx allows manual over ride
+    - make these public abstract methods
+- to handle methods on subclasses 
+    - https://github.com/sphinx-doc/sphinx/issues/11434
+- can curate which methods are included/excluded by excluding specifc parent classes
+- with collection: document private with sizes for now
+
+# Aug 22nd
+_attending_: @greglucas, @efiring, @ksunden, @QuLogic, @story645, @trygvrad, @tacaswell, @litchi
+
+### Old business
+- [x] RSE
+- [x] GSOC: deadline is aug 26th, is waiting on 
+    - [x] new pipeline: https://github.com/matplotlib/matplotlib/pull/28658
+    - [x] colormaps: https://github.com/matplotlib/matplotlib/pull/28454
+- [x] [name=story645] docs:
+  - [access to analytics](https://github.com/matplotlib/matplotlib/issues/28696)
+  - new user survey ran by Jerome (@jeromefv-former GSOD) and Tammy (@tgmiller5)
+- [x] NF Project summit 
+    - Cambridge Mass, Sep 5-7
+- [x] Small dev grant CFP - due Sep 30, 2024
+    - possibly survey + doc reorg
+
+### New business
+
+- [name=story645][seperate hatch and egde color](https://github.com/matplotlib/matplotlib/pull/28104)
+- [name=QuLogic] home page translations: [reST-ification](https://github.com/matplotlib/mpl-brochure-site/pull/96), [enable sphinx-intl](https://github.com/matplotlib/mpl-brochure-site/pull/97)
+- [name=QuLogic] asyncio-based backends [PyGObject MR](https://gitlab.gnome.org/GNOME/pygobject/-/merge_requests/189)
+
+## Notes
+### GSOC
+#### dev docs not building/updating
+- known bug with a unit example 
+- quick fix is to ban numpy2.1.0
+
+#### new pipeline
+ - has PR to @trygve's branch to adjust inheretance so to avoid breaking user code
+     - will merge + add some more comment
+ - when ScalarMappable is removed, methods can move down to `ColorizingArtist`
+
+#### color map PR
+
+#### Current state of things
+
+ - https://trygvrad.github.io/gsoc-2024-bivariate-colormaps-summary/
+ - need first 2 steps are there PRs, need 3 more to get everything landed
+
+### RSE updates
+ - kyle: data prototype stuff
+     - working on patches
+     - looking at numpy problems with docs build
+     - gsoc
+ - Elliott:
+     - pybind11 work
+     - working on ft2font
+     - work on brochure site
+ - Tom:
+     - mostly review
+     - trying to test with cp313t
+         - the borrowed c++ refs may go away with pybind11
+         - dragons may be in macos backend
+ ### analytics
+  - now public
+
+### survey 
+
+- need to see the questions + pre-design of analysis before it goes out
+
+### summit
+sending and 
+
+
+- question about GDPR + discourse
+    - can we move our users + history to another instance
+- status of NF CoC for projects
+
+### small development grant 
+- not this cycle 
+
+### hatchcolor/edgecolor
+- hatchcolor + pcolor needs to be optional 
+- need to make backends forgiving for backends that don't implement hatch 
+
+
+
+# Aug 15th
+_attending_: @efiring, @ksunden, @QuLogic, @story645, @trygvrad, @tgmiller5 
+
+### Old business
+- [ ] RSE
+- [ ] GSOC: deadline is aug 26th, is waiting on 
+    - [ ] new pipeline: https://github.com/matplotlib/matplotlib/pull/28658
+    - [ ] colormaps: https://github.com/matplotlib/matplotlib/pull/28454
+
+### New business
+- [x] [name=story645] docs meeting:
+  - [access to analytics](https://github.com/matplotlib/matplotlib/issues/28696)
+  - new user survey ran by Jerome (@jeromefv-former GSOD) and Tammy (@tgmiller5)
+- [x] NF Project summit 
+    - Cambridge Mass, Sep 5-7
+- [x] Small dev grant CFP - due Sep 30, 2024
+    - possibly survey + doc reorg
+  
+### Pull requests 
+
+## Notes
+
+# user surve + analytics
+- [x] follow-up email sent to steering council
+
+# GSOC
+- multivariate/bivariate needs approval
+- pipeline: address reviews then changes
+- potential tracking issue for rest of transition
+
+# RSE
+- fixing CI + getting 3.9.2 + pybind
+
+# Aug 8
+_attending_: @IGuKs80UTJCig4yt6Zos7w (greglucas), @story645, @tacaswell, @ksunden, @QuLogic, @QWhXj01mSwmTjk5kN1H_qQ(efiring), @trygvrad
+
+## Agenda
+### Old business
+- [ ] RSE
+- [ ] GSOC
+    - ScalarMappable|shim|Colorizer boundaries/ seperation of concerns
+
+### New business
+- [name=story645] docs meeting: 
+    - access to analytics 
+    - new user survey
+- windows wheel issue
+- 
+### Pull requests:
+- [Build for musllinux on ARM](https://github.com/matplotlib/matplotlib/pull/28592) - feedback requested (@oscargus: I know that we may not want to build for every combination of platforms, but not how it is determined. Also, currently it takes 97 minutes. If I join the call, will try to remember that, I can provide feedback. If not, I'd appreciate if someone can.)
+
+## Notes
+
+### Windows wheel issue
+- think we understand the issue and have a draft PR to fix it
+- think we understand:
+    - GHA runners have a bunch of different dlls
+    - the one that came up first in the PATH found the wrong dll
+    - by specifying a path to delvewheel we should be able to fix it
+- bad timing on a devlewheel problem where things changed between when we tested and when we released
+    - delevwheel did a release between .post0 and .post1
+- Ian has a draft PR in that needs to be tested
+- Reached out to Steve Dower
+    - reccomended that we statically link msvc40.dll
+    - should only be done for wheels (not CF)
+- may be wider issue as and it may come back later in other places, may want a shared wheel for this dll?
+- issue with not finding dll
+    - one way to fix is set `--vsenv` but it assumes that msvc is installed and what you want to use
+    - meson tries to find any complier, falls back to looking for msvc (which is how it works for most dev machines)
+    - if something happens to be on the path, meson uses that BUT those dlls are not on path at run time
+
+TODO:
+ - get static linking set up on CI
+ - get those wheels tested
+ - do 3.9.2 or 3.9.1.post2
+     - enable py3.13 if 3.9.2 route, not if 3.9.1.post2 release
+ - target close of business Friday
+
+### musl arm
+- OP followed up
+- Kyle posted summary, inculding asking for volunteer
+    - OP agreed to take role
+    - please add comment to yaml
+- delaying speed up until follow up PR
+    - if it is a problem, we can evaluate how to fix it
+- do we want to pay for native arm?
+    - currently no, but maybe if we find a sponsor for it
+
+### GSOC/colorizer
+
+- has implemented new colorizer class
+- need to agree on some names
+- need typing
+- need tests for new functionality
+- put new class in new file
+- do we want to move norms to `norms.py`
+    - pro: better names
+    - con: either deal with deprecation dance (and cost to other) or accept it lives in 2 places (forever?)
+    - consenus is to do the move and keep the forwarding forever, but we need to get buy-in from Tim
+    - de-document, do not type hint, maybe drop from `__all__`
+    - [EDIT]: An issue has been opened here https://github.com/matplotlib/matplotlib/issues/28690
+
+color
+- put property forwarders on ColorizingArtist 
+
+colorizingartist + forwarding functions class (scalarmappbleshim?colorizershim/interface)
+
+moving norm and cmap attributes from an artist to a colorizer
+- if you set a norm/cmap on artist, then sets it on colorizer
+    - when we deprecate scalarmappble, 
+    - will either remove the ability to set or 
+- silently overwrite setting properties -> only happens if you explicitly opt into colorizer
+
+-> set_norm: add *arg* for new colorizer, or use `set_colorizer`
+
+
+# Aug 1
+_attending_: @efiring, @tacaswell, @ksunden, @QuLogic, @trygve, @timhoffm, @ianthomas23, @story645  
+
+## Agenda
+### Old business
+- [ ] RSE
+- [ ] GSOC
+    - [ ] [data->color pipeline](https://github.com/matplotlib/matplotlib/pull/28428) changes/rearch
+### New business
+ - [ ] windows 3.9.1 + nightly wheels broken https://github.com/matplotlib/matplotlib/issues/28551
+ - [ ] 
+## Notes
+
+### Windows 3.9.1 + nightly (contourpy)
+- try windows 3.9.0 w/ nightly wheels 
+
+### GSOC: colormapping pipeline
+- proposal is transition from $scalermappable: norm \circ cmap \circ data$ model to $mappable : data -> color$ model
+- questions on how do we roll this out:
+    - vector_* methods: changes are mostly at the backing artist layer (AxesImage, PatchCollection, etc...) so would require writing/maintaining shadow API of Axes.* methods and scalarmappable aware artists 
+    - putting in a scalarmappable shim so that layer of public API is still available
+    - pulling out an initial interface layer PR w/ minimal implementation + shims 
+        - POC that shows that the new pipeline slots into the existing workflow cleanly
+        - shepherded by @tacaswell and @timhoffm 
+        - fold in colorbar in a later PR
+- colorbar pointing to artist? [adding cbar to ScalerMappable](https://github.com/matplotlib/matplotlib/issues/25880)
+
+# July 25
+_attending_: @trygve @efiring @ksunden @story645 @tacaswell, @QuLogic   
+
+## Agenda
+### Old business
+- [x] RSE
+- [x] GSOC
+
+### New business
+
+### Issues
+
+## Notes
+
+### GSOC
+ - waiting on review 
+   - https://github.com/matplotlib/matplotlib/pull/28428
+- second PR, introduces VectorMappable to replace ScalarMappbale 
+- suggestion to have a higher-level wrapper that holds both the mappable and the colormap so that we can do coordinated updates
+    - also gives an escape hatch to do direct data -> color (without being forced through our norm concept)
+- if we are going to go this route, doing it now seems good
+    - conflicts between availabilty vs GSOC timeline
+- needs to do some review
+
+
+### RSE
+- Caswell
+    - starting to do review again
+- Kyle
+    - start of text in the new system
+        - text has a lot of options, most are missing
+    - starting to think about documentation
+    - reviews 
+- Elliott
+    - working through open PRs
+    - 3.13 wheel PR is mostly ready
+    - working on Agg pybind11
+    - reviews
+
+### SDG + CZI
+ - got it, will start work soon
+ - given no-cost extension from CZI
+
+### mplplaybook
+
+- down to adding 4 minutes to docs build
+- [mpl-playback](https://github.com/matplotlib/matplotlib/pull/23441#issuecomment-2233128336)
+- needs to not add to much time (less than 10 minutes)
+    - docs CI should not become the bottle neck
+- needs to not add too much weight to output
+- should hook into the "release mode" machinery
+- hold off on waiting for SG to release with their fix
+
+### doc building
+ - discussion of why we build docs with the oldest version of Python we support
+ - will move to newest and see if we get speed ups
+
+### tag protection rules
+ - restirct push tags to (to-be-created release manager team)
+ - have already added a manual review step before wheels are uploaded to pypi
+
+
+# July 18
+_attending_: @efiring, @ksunden, @QuLogic, @trygvrad, @story645, @rcomer 
+
+
+## Agenda
+### old business
+- [x] RSE
+- [x] GSOC
+
+### New business
+- [ ] scipy
+
+### Issues 
+- [ ] [mpl-playback](https://github.com/matplotlib/matplotlib/pull/23441#issuecomment-2233128336)
+
+## Notes
+### GSOC
+- is at 2/4 PRs for mvp
+    - [colormaps](https://github.com/matplotlib/matplotlib/pull/28454)
+    - [vectormappable](https://github.com/matplotlib/matplotlib/pull/28428)
+    - next: imshow w/ examples
+- if `NormAndColor` mappable encapsulating color goes in (waiting on chat w/ @timhoffm) then can potentially hook in data and rgb interpolations
+    - find better names 
+
+### Scipy
+
+# June 27
+_attending_: @efiring, @tacaswell, @ksunden, @story645, @QuLogic 
+
+## Agenda
+### Old business
+- [x] RSE
+- [x] GSOC
+    - Colormaps: https://github.com/matplotlib/matplotlib/pull/28454
+    - VectorMappable: https://github.com/matplotlib/matplotlib/pull/28428
+### New business
+- [x] 3.9.1 schedule
+- [ ] 3.10 priorities
+
+## Notes
+### GSOC
+- PRs have been opened
+    - discusions about the API
+    - do we want to keep `ScalarMappable` around as anything other than a back-compat shim?
+    - keeping vector and scalar versions independent leads to duplicated / parallel classes (like old Qt4/Qt5 classes)
+    - some things that are currently ScalarMappable do not have sensible VectorMappable counter parts (e.g. contour)
+- Try to get 's review of VectorMappable, otherwise normal PR rules
+
+### RSE
+- Kyle:
+    - data prototype stuff, mostly fixed the units example
+    - GSOC work
+    - PR review
+- Elliott:
+    - mostly 3.9.1 things
+    - moved some things from 3.9.2 to 3.9-doc
+    - review 3.9.1 PRs, looking at axvspan autolimit regression
+    - looked at CF build issues
+- Tom
+    - on vacation last week, catching up this week
+    - some review, need to finish writing a grant report
+    
+### 3.10
+
+- target early October 24
+- goals
+    - GSOC work landing (Kyle and Hannah)
+    - image testing framework overhaul (Tom)
+    - work on mplgui (Tom)
+    - jupyter rfb backend landed (Elliott)
+    - Elliott has a list of PRs
+        - https://github.com/matplotlib/matplotlib/pull/23056
+        - https://github.com/matplotlib/matplotlib/pull/23085
+        - https://github.com/matplotlib/matplotlib/pull/24554
+        - https://github.com/matplotlib/matplotlib/pull/24626
+        - https://github.com/matplotlib/matplotlib/pull/24744
+    - 
+
+
+### 3.9.1 target
+- tomorrow (June 28) target date
+
+# June 20
+_attending_: @trygve, @QuLogic, @ksunden, @story645 
+
+### Old business
+
+- [ ] RSE
+- [x] GSOC
+
+## Notes
+
+### GSOC
+- can add testing by introducing colorbar/norm first
+- package $n \times m \times l$ array as a $n\times m$ array with dtype tuple of length l
+    - pro: reduces input to 2D arrays for purpose of manipulation
+    - con: may require extra copies 
+    - check: how data space interpolation is handled    
+
+### translation: 
+#### cheatsheets:
+- translating in a way where layout is respected 
+- how do I? construction not universal 
+- possibly examples or plot type gallery instead (for tooling)
+
+#### brochure: 
+- refactor into translation friendly version
+
+#### contribute:
+- maybe write a short version: https://numpy.org/contribute/
+
+### brochure site
+- news section: revive https://github.com/matplotlib/mpl-brochure-site/pull/17
+    - only show entries w/ a publish tag?
+    - do we want to keep discourse?
+
+
 # June 13
 _attending_: 
 
