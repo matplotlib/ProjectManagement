@@ -2,7 +2,7 @@
 
 **A regular sync meeting for the project's maintainers, which is open to the community.** Everyone is welcome to attend and contribute to conversations.
 
-## February 22 2024 - 
+## February 22 2024 - Jan 09 2025
 
 
 ###### tags: `2024 dev call`
@@ -27,14 +27,104 @@ America/New_York     2023-04-06 15:00:00-04:00
 America/Vancouver    2023-04-06 12:00:00-07:00
 US/Hawaii            2023-04-06 09:00:00-10:00
 ```
+
+# Jan 9
+_attending_: @greglucas, @efiring, @story645, @tacaswell, @rcomer, @ksunden, [@efiring](@QWhXj01mSwmTjk5kN1H_qQ) 
+
+## Agenda
+### old business
+- [x] 3.10 doc tweaks
+- [x] NASA updates
+- [x] RSE updates
+
+### new business
+
+## Notes
+
+### RSE updates
+- Tom
+    - time off
+    - python-build-standalone 
+        - https://github.com/astral-sh/uv/issues/6893#issuecomment-2565965851
+    - some review
+- Kyle
+    - some time off
+    - working on planning the next 2 months of work
+    - catch up
+
+### what big stuff is in the pipe?
+ - bivariate colormap (has PR, needs review)
+ - bezier work (from Bruno)
+ - PR to vectorize 3D code 
+     - some have been resurected by Scott
+ - font work! (raq)
+ - groupbar chart
+ - what artists get a label attribute
+ - start to look at ticks
+
+
+### [labels](https://github.com/matplotlib/matplotlib/issues/29422)
+ - to ideas:
+     - want to have a unique id so you can select artist by name [2](https://github.com/matplotlib/matplotlib/issues/29429)
+         - sometimes people (ab)used the label API for this
+     - label is top-level artist property to be used in legends even on things that should never be in the legend (like the Legend itself or the whole figure)
+
+
+# Dec 26
+_attending_: @efiring, @tacaswell, @story645 
+
+# old business
+
+
+## notes
+- request to prioritize Remote Frame Buffer
+
+# Dec 19 
+_attending_: @story645, @ksunden, @QuLogic 
+
+### Old business
+- [ ] RSE updates
+### New business
+
+## Notes
+- Kyle : 3.10 release
+- Elliott : font internationalization
+
+
+### [edge/hatch color](https://github.com/matplotlib/matplotlib/pull/28104)
+- is edge intended as a color spec? 'inherit' can be passed in through color or rcParam
+- should transparent edgecolor be special cased when hatch is set and no hatchcolor is set
+
 # Dec 12
-_attending_: @story645, @greglucas, @ksunden 
+_attending_: @story645, @greglucas, @ksunden, @tacaswell, @QuLogic 
 ## Agenda
 ### Old business
-- [] RSE updates
+- [ ] RSE updates
 ### New business
-- [] 3.10
-- [] Symlinks in wheels
+- [x] 3.10
+- [x] Data symlinks in wheels not working ([Issue](https://github.com/matplotlib/matplotlib/issues/29229))
+## Notes
+### missing files
+- determined that the missing files is due to a change in meson-python between 0.16.0 and 0.17.0
+- will pin back and quickly cut a 3.9.4
+- will tag 3.10.0 as soon as this is done
+
+### RSE updates
+ - Tom
+     - not much, busy with other resonsibilities
+ - Kyle
+     - trying to sort out a series of "one more thing..." for 3.10
+ - Elliott
+     - trying to get back on top of reviews
+     - work on font stuff
+         - couple of nice-to-have before pulling bulk of raqm work in
+         - type3 fonts in pdf can be nicer
+             - characters out of ascii plane are rendered in the right place but as "xobject" not as text so highlighting is super broken
+             - may be able to use a very custom code page that supports the first 256 glyphs as proper text
+         - do we care about type3
+             - its complicated
+             - publishers may still care
+         - maybe able to get ghostscript to do type1 -> type3 conversion
 
 # Dec 5 
 _attending_: @QuLogic, @ksunden, @story645, @NGWi
