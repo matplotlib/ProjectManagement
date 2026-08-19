@@ -29,9 +29,293 @@ America/New_York     2023-04-06 15:00:00-04:00
 America/Vancouver    2023-04-06 12:00:00-07:00
 US/Hawaii            2023-04-06 09:00:00-10:00
 ```
-# 30 Nov 2023
+
+----
+
+# 21 Dec 2023
+
 ## Agenda
- - [ ] discussion about moving time of standing meeting
+
+### Old Business
+- [x] Meeting time discussion 
+
+### New Busines
+- [x] RSE reports
+- [x] data prototype slides
+- [x] pydata armenia sprint?
+- [x] next week?
+
+### Issues and PRs
+
+## Notes
+
+### introductions
+
+### pydata sprint
+
+- in person or virtual?
+- monthly meetups
+- yearly conferenece
+
+@tacaswell will reach out to EU based maintainers to see if anyone is interested.
+
+### meeting timing discussion
+
+- 2pm did a bit better than 3pm (times in NY)
+- what is "best time" without HI?
+- table till more people
+
+### next week
+- cancel meeting
+
+### RSE updates
+- Elliott
+    - pushed on replacing transforms with eigen
+        - found what to check to see if it works
+        - held up on waiting for our path extension to be converted to pybind11 to avoid np conversions
+    - automation work on website
+    - looking at trusted publisher
+        - move to new artifacts action + trusted publisher
+- Kyle
+    - general PR review
+    - prep slides for this meeting
+    - some thoughts about dataprototype
+- Tom
+    - PR / issue review
+    - data prototype + slides
+
+
+### trusted publisher
+- github + pypi collaboration
+- can set up a workflow on GHA to be trusted by pypi to do uploads directly rather than going through a release manager
+- no shared secrets we manage
+
+### data prototype
+
+
+----
+# 14 Dec 2023
+
+attending: @ksunden @story645 @oscargus @jklymak, @QuLogic 
+
+### Old Business
+- [ ] Meeting time discussion
+    - https://whenisgood.net/22qgxi3/results/bb7san5
+    - Thurs 2:00PM (EST) seems to be the current fave  
+
+### New Business
+- [ ] RSE reports
+- [ ] [name=hannah] GSOC 20th anniversary
+    - https://opensource.googleblog.com/2023/11/google-summer-of-code-2024-celebrating-20th-year.html
+    - For the 2024 program, there will be three options for project scope:
+        - medium at ~175 hours
+        - large at ~350 hours 
+        - new size: small at ~90 hours 
+
+### Issues and Prs
+- [name=hannah] [move {install/project/releases} out of users/](https://github.com/matplotlib/matplotlib/issues/27396)
+    - follows from [moving doc root](https://github.com/matplotlib/matplotlib/pull/26332), `match(folder structure, index)`
+    - as consequence user/ can be sphinx gallery containing explain & getting started, which means no more symlink (which creates confusion of what to edit)
+- [name=hannah] https://github.com/matplotlib/matplotlib/pull/27265
+
+## Notes
+
+### RSE reports
+- @tacaswell: 
+    - PR review
+- @ksunden: no data type report until he returns.
+    - sprints pydata global.  Most of datetime tests in.  Though odd so many don't work.
+        - datetime64: tri: not formatted; 
+        - streamplot - timedelta64 doesn't work?  Should it? units of velocity.  arrow
+    - working on data type report concepts
+- @QuLogic 
+    - transform stack work
+        - small numpy arrays expensive: C++ class?  
+        - add tests to make that robust
+        - Has class working 
+            - pybind11 has eigen helpers
+            - needs access to elements for some transforms
+        - Path C++ extension not on pybind11 yet.  Injects numpy
+    - Release automation
+        - docs use JS/HTML instead of html5 animations
+            - no video controllers in html5
+        - sphinx gallery reset of rcParams: uses installed library defaults, so changing .matplotlibrc doesn't work.
+            - will open PR to SG to do correct thing
+        - timeouts/space limits
+            - but we set higher
+            - above should fix
+
+### GSOC:
+- https://opensource.googleblog.com/2023/11/google-summer-of-code-2024-celebrating-20th-year.html
+- 20th anniversary
+- New lowest 90h project level
+- anyone interested in mentoring?
+
+### Meeting time:
+
+- 14:00 EST favourite time. 
+
+### Issues and PRs
+- move users/* up to doc/
+
+
+
+-----
+
+# 7 Dec 2023
+
+## Agenda
+@attending: @tacaswell @efiring @QuLogic @ksunden @jklymak @chahak @pXw4hSgTQF2--OciPYwa1w 
+
+### Old Business
+- [x] Meeting time discussion
+    - https://whenisgood.net/22qgxi3
+- [x] [name=QuLogic] Move `Contribute` to devdocs? 
+    - Review for change is here: https://github.com/matplotlib/matplotlib.org/pull/36
+    - Test server is at: https://mercury.matplotlib.org/stable/
+
+
+### New Business
+- [x] RSE reports
+- [x] how to inject units
+
+### Issues and PRs
+- [x] [name=hannah] dev docs prs
+    - [x][move dependencies to install](https://github.com/matplotlib/matplotlib/pull/27395)
+    - [x][finish out reorganizing devdocs](https://github.com/matplotlib/matplotlib/pull/27265)
+    - [x][add collection-fontsrecommend](https://github.com/matplotlib/matplotlib/pull/27282)
+- [x] [name=hannah] [matplotlib.org: make contributing more prominant](https://github.com/matplotlib/matplotlib/pull/27282)
+- [x] [name=hannah] [patheffects rcParam + xkcd style](https://github.com/matplotlib/matplotlib/pull/26854)
+
+## Notes
+
+- RSE notes:
+    - @ksunden: test datetime PRs, some data protoype work. 
+    - @tacaswell: CZI grant in w Elliott and Eric
+    - @QuLogic: Grant.  test datetime PRs
+- Inject units:
+    - conversion nodes for pipeline of data
+    - delayed conversion node; when querrying data supplies converter.
+    - Maybe a 15 minute short presentation for next week @ksunden 
+    - Something like dask maybe to general purpose for what we are after 
+    - linear call graph
+        - lazy evaluation
+        - caching
+        - ordering
+        - enforce input/output on methods
+    - transform stack in pipeline (probably?)
+        - maybe some optimizations 
+- Meeting time discussion
+    - tabled until next week
+- Redirects on contribute to devdocs
+    - test server can try it
+    - merged @QuLogic will redeploy main webpage
+    - moving dependencies under install instead of devel
+- https://github.com/matplotlib/matplotlib/pull/26854 Path effects
+    - parse patheffects as list of tuples
+    - third party patheffects? 
+        - requires import?
+        - can't validate patheffect method name
+- https://github.com/matplotlib/matplotlib/issues/27228
+    - reasonably dueable to go through shared axes of the one being interacted with
+    - find each axes parent and call push tool bare on their toolbars
+    - when pushing "back on figure 1"
+        - do we just add another thing to the stack
+        - move "back" on the other figure 
+
+----
+
+# 30 Nov 2023
+
+_attending_: @tacaswell @rcomer @chahak @ksunden @story645 @jklymak 
+
+## Agenda
+- [x] RSE reports
+- [x] discussion about moving time of standing meeting
+- [x] [name=hannah] [PyData Global](https://pydata.org/global2023) sprints Dec 6-8
+
+### Issues and PRs
+- [x] [name=hannah] [stix license](https://github.com/matplotlib/matplotlib/pull/27316)
+- [x] [name=jklymak] Move `Contribute` to devdocs?
+    - redirect? Separate repo? 
+- [ ] Roadmapping:
+    - mplgui
+    - way forward with baseline images
+    - other larger things we should be pushing for?
+
+
+## notes
+
+### RSE reports
+ - Kyle: travel / vacation, 
+     - some data prototype work
+     - adding api to explicit set converter to Axis 
+ - Tom: travel / vacation
+     -  work on grant
+ - Elliott: 
+     - working on code coverage for msvc
+     - doc work for redirects
+     - bit of work on grant
+
+### Meeting time
+- annual re-evaluation
+- @story645 will email to devel mailing list + discourse a survey
+- discuss again in 2 weeks
+
+### pydata global sprints
+- online / remote only
+- @ksunden will run our test coverage adding issue again
+
+### STIX license
+ - @tacaswell will look at this carefully
+
+### moving contribute out of main docs
+
+options:
+ - redirect from stable/contirbute -> devdocs/contribute
+ - move whole tree to separate repo
+     - cons: hard to maintain, confusion of what part of the docs come from where
+     - pro: makes sperations of concerns very clear
+ - point navbar link to point to devdocs
+     - con: hard-coded urls are not great
+ 
+
+Need to do another pass to make sure we do not have any version dependent information
+in tree.
+
+conclusions
+ - @QuLogic will add in redirect
+ - run changing links in navbar
+ - keep thinking about if we should clave off into own repo
+
+### roadmapping
+ - mplgui
+     - mostly done
+     - try to release on own
+     - target merging for 3.10?
+     - interaction with jupyter?
+     - include in CZI grant + jupyter rfb
+ - baseline images
+     - stuck in @tacaswell 's head
+ - refactoring axes/axis
+     - rethink formatters / locators / tickers
+     - go to tick collections instead of just ticks
+     - have the major + minor locators/formatters be aware of each other
+         - generalize to do multi-level locators/formatters 
+     - rationalize access to to sub-parts 
+ - blit manager
+     - partial prototype exists
+ - performance issues
+     - axes creation is super slow (ticks)
+ - text
+     - caching
+
+### discussion of units test coverage work
+
+- some things just don't work and need to be documented (deltas in arrow)
+- found some real bugs (axlines)
+
+---
 
 # 23 Nov 2023
 
