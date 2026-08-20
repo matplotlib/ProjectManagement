@@ -4,6 +4,7 @@ import argparse
 import difflib
 import subprocess
 import sys
+import re
 from pathlib import Path
 
 
@@ -35,6 +36,12 @@ def get_lines(commit: str, base_path: str):
     return sorted(lines)
 
 
+def to_alphanum_line(line: str) -> str:
+    line = re.sub(r"[^A-Za-z0-9 ]", "", line)
+    line = re.sub(r"\s+", " ", line)
+    return line
+
+
 def get_lenient_lines(in_lines: list[str]) -> list[str]:
     out_lines = []
 
@@ -51,6 +58,8 @@ def main():
     )
     parser.add_argument("--dir", type=Path, default="meeting_notes", help="Directory to diff")
     parser.add_argument("--lenient", action="store_true", help="Unique sorted lines")
+    parser.add_argument("--alphanum", action="store_true",
+        help="Only keep alphanumeric and space characters")
     parser.add_argument("commit1", help="Hash of first commit")
     parser.add_argument("commit2", help="Hash of second commit")
     args = parser.parse_args()
@@ -61,6 +70,10 @@ def main():
     except subprocess.CalledProcessError as e:
         print(e.stderr, file=sys.stderr, end="")
         sys.exit(e.returncode)
+
+    if args.alphanum:
+        lines1 = [to_alphanum_line(line) for line in lines1]
+        lines2 = [to_alphanum_line(line) for line in lines2]
 
     if args.lenient:
         lines1 = get_lenient_lines(lines1)
