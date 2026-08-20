@@ -7,5 +7,9 @@ Weekly dev call meeting notes archive
 ## Call co-ordinates:  Monday 3:00-4:00PM (15:00) Eastern US time (UTC -04:00)
 * [Zoom](https://zoom.us/j/384435716)
   
+## Maintenance
+
+- Files can be synced from hackmd by any member of the @matplotlib hackmd team with write access to this repo
+- PRs can be merged on one approval
 
 
